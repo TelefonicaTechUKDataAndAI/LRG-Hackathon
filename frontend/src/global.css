@@ -1,0 +1,8 @@
+:root[data-mantine-color-scheme="light"] body {
+    --mantine-color-body: var(--mantine-color-gray-1);
+}
+
+/* For dark mode */
+:root[data-mantine-color-scheme="dark"] body {
+    --mantine-color-body: #282827;
+}
