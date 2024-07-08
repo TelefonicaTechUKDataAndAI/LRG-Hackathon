@@ -42,22 +42,29 @@ export function HomePage() {
 
     setLoading(true);
 
+    const formData = new FormData();
+    formData.append('request', file);
+
     fetch('/api/process-audio-file', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/octet-stream',
-      },
-      body: file,
+      body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        return Promise.reject(response);
+      })
       .then((data) => {
         setMessages((oldMessages) => [...oldMessages, { message: data.response, role: 'bot' }]);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(async (error) => {
+        const errorDetail = await error.json();
+
         setMessages((oldMessages) => [
           ...oldMessages,
-          { message: 'Error: '.concat(error), role: 'bot' },
+          { message: 'Error: '.concat(errorDetail.detail), role: 'bot', type: 'error' },
         ]);
         setLoading(false);
       });
