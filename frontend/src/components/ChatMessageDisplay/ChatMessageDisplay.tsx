@@ -7,7 +7,11 @@ interface ChatMessageDisplayProps {
 
 export default function ChatMessageDisplay({ message }: ChatMessageDisplayProps) {
   const justify = message.role === 'bot' ? 'flex-start' : 'flex-end';
-  const bg = message.role === 'bot' ? 'gray.2' : 'green.4';
+  let bg = message.role === 'bot' ? 'gray.2' : 'green.4';
+
+  if (message.type === 'error') {
+    bg = 'red.4';
+  }
 
   return (
     <Flex justify={justify}>
