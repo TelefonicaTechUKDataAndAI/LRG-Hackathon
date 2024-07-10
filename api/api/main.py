@@ -4,8 +4,9 @@ import dotenv
 from fastapi import FastAPI, HTTPException, UploadFile
 from pydantic import BaseModel
 
-from api.chat.chat_handler import ChatHandler
-from api.enrich.audio_transcriber import AudioTranscriber
+from chat.chat_handler import ChatHandler
+from search.search_handler import SearchHandler
+from enrich.audio_transcriber import AudioTranscriber
 
 dotenv.load_dotenv()
 
@@ -13,7 +14,7 @@ app = FastAPI()
 
 chat_handler = ChatHandler()
 audio_transcriber = AudioTranscriber()
-
+search_handler = SearchHandler()
 
 class ProcessRequest(BaseModel):
     body: str
@@ -28,6 +29,10 @@ async def process(request: ProcessRequest) -> ProcessResponse:
     response_content = str(chat_handler.get_chat_response(request.body).content)
     return ProcessResponse(response=response_content)
 
+@app.post("/api/process-rag-search")
+async def process(request: ProcessRequest) -> ProcessResponse:
+    response_content = str(search_handler.get_chat_response(request.body).content)
+    return ProcessResponse(response=response_content)
 
 @app.post(path="/api/process-audio-file")
 async def process_audio_file(request: UploadFile) -> ProcessResponse:
