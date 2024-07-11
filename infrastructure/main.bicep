@@ -28,7 +28,7 @@ param appServiceSkuName string = 'B1'
 @description('Name for the Azure Cognitive Search service. Must be between 2 and 60 characters, using lowercase letters, digits, or dashes.')
 @minLength(2)
 @maxLength(60)
-param searchServiceName string = toLower('search${councilName}')
+param searchServiceName string = toLower('lrgsearch${councilName}')
 
 @description('Pricing tier for the Azure Cognitive Search service.')
 @allowed([
@@ -56,8 +56,14 @@ var storageAccountName = toLower('sa${councilName}lrg01')
 // Ensure the storage account name is within the length limit
 var truncatedStorageAccountName = take(storageAccountName, 24)
 
-// Determine the App Service Plan tier based on the SKU
-var appServicePlanTier = appServiceSkuName == 'F1' ? 'Free' : 'Basic'
+// Dictionary to map SKU names to tiers
+var skuToTier = {
+  F1: 'Free'
+  B1: 'Basic'
+}
+
+@description('Tier for the App Service Plan')
+var appServicePlanTier = skuToTier[appServiceSkuName]
 
 // Resources
 
