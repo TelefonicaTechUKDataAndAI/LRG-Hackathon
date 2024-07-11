@@ -1,5 +1,6 @@
 import { AppShell, Burger, Container, Group, Paper, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import Logo from '../Logo/Logo';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
       <AppShell.Header bg="blue">
         <Group h="100%" px="md">
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          <Logo />
           <Text c="white" fw={600}>
             Microsoft and Telefónica Tech - Local Government Hackathon
           </Text>

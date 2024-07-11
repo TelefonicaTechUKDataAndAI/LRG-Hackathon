@@ -9,8 +9,6 @@ export function HomePage() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleError = async (error: Response) => {
-    console.log(error);
-
     const contentType = error.headers.get('content-type');
     let errorDetail = 'Unknown Error - Status Code '.concat(error.status.toString());
 

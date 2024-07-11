@@ -5,6 +5,7 @@ from fastapi import FastAPI, HTTPException, UploadFile
 from pydantic import BaseModel
 
 from api.chat.chat_handler import ChatHandler
+from api.enrich.audio_converter import AudioConverter
 from api.enrich.audio_transcriber import AudioTranscriber
 
 dotenv.load_dotenv()
@@ -33,13 +34,22 @@ async def process(request: ProcessRequest) -> ProcessResponse:
 async def process_audio_file(request: UploadFile) -> ProcessResponse:
     # Write the audio file to disk
     temp_file = tempfile.NamedTemporaryFile(delete=False)
-    
+
     try:
         temp_file.write(await request.read())
         temp_file.close()
+      
+        if request.content_type:
+            if "webm" in request.content_type:
+                temp_wav_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+
+                # Convert webm to wav
+                AudioConverter.convert_webm_to_wav(temp_file.name, temp_wav_file.name)
+
+                temp_file = temp_wav_file
 
         # Transcribe audio
-        transcribed_audio = await audio_transcriber.transcribe_from_stream(
+        transcribed_audio = await audio_transcriber.transcribe_from_file(
             temp_file.name
         )
 
