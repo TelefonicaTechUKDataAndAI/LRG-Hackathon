@@ -1,0 +1,93 @@
+<mxfile host="65bd71144e">
+    <diagram name="Complaints" id="3uktaIMhB8X7vee6QesF">
+        <mxGraphModel dx="1900" dy="834" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="fE0oB8jx1l7CBFk6Y13O-7" target="fE0oB8jx1l7CBFk6Y13O-9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ZGL_hoHewfVaquy0yPkS-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="fE0oB8jx1l7CBFk6Y13O-7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="112.00000000000023" y="174.2299131196121" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-7" value="Knowledge Creator&lt;div&gt;(Python Script)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="52" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-1" value="Azure Open AI Service" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://static-00.iconduck.com/assets.00/openai-icon-2021x2048-4rpe5x7n.png;perimeterSpacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="190.00000000000006" y="610" width="49.33" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-2" value="Azure Cognitive Search?" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/app_services/Search_Services.svg;" parent="1" vertex="1">
+                    <mxGeometry x="284.5" y="169" width="68" height="49.120000000000005" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;" parent="1" target="fE0oB8jx1l7CBFk6Y13O-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="300" y="530" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="300" y="570"/>
+                            <mxPoint x="215" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" target="fE0oB8jx1l7CBFk6Y13O-24" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="340" y="530" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="340" y="570"/>
+                            <mxPoint x="435" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-3" value="Backend API&lt;div&gt;(Python)&lt;/div&gt;" style="image;aspect=fixed;html=1;points=[[0.5,1,0,0,41]];align=center;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;perimeterSpacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="293.5" y="440" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-4" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="272.61" width="36.5" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-5" value="" style="editableCssRules=path;shape=image;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjQuMCBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyMyBGb250aWNvbnMsIEluYy4gLS0+PHN0eWxlIHR5cGU9InRleHQvY3NzIj5wYXRoIHtmaWxsOiMwMDAwMDA7fTwvc3R5bGU+PHBhdGggZD0iTTY0IDk2YzAtMzUuMyAyOC43LTY0IDY0LTY0SDUxMmMzNS4zIDAgNjQgMjguNyA2NCA2NFYzNTJINTEyVjk2SDEyOFYzNTJINjRWOTZ6TTAgNDAzLjJDMCAzOTIuNiA4LjYgMzg0IDE5LjIgMzg0SDYyMC44YzEwLjYgMCAxOS4yIDguNiAxOS4yIDE5LjJjMCA0Mi40LTM0LjQgNzYuOC03Ni44IDc2LjhINzYuOEMzNC40IDQ4MCAwIDQ0NS42IDAgNDAzLjJ6TTI4MSAyMDlsLTMxIDMxIDMxIDMxYzkuNCA5LjQgOS40IDI0LjYgMCAzMy45cy0yNC42IDkuNC0zMy45IDBsLTQ4LTQ4Yy05LjQtOS40LTkuNC0yNC42IDAtMzMuOWw0OC00OGM5LjQtOS40IDI0LjYtOS40IDMzLjkgMHM5LjQgMjQuNiAwIDMzLjl6TTM5MyAxNzVsNDggNDhjOS40IDkuNCA5LjQgMjQuNiAwIDMzLjlsLTQ4IDQ4Yy05LjQgOS40LTI0LjYgOS40LTMzLjkgMHMtOS40LTI0LjYgMC0zMy45bDMxLTMxLTMxLTMxYy05LjQtOS40LTkuNC0yNC42IDAtMzMuOXMyNC42LTkuNCAzMy45IDB6Ii8+PC9zdmc+;connectable=0;movable=1;verticalLabelPosition=bottom;resizable=1;rotatable=0;cloneable=0;deletable=1;recursiveResize=0;imageBackground=none;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="265.22" width="54.78" height="54.78" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-6" value=" Specific &#10;Knowledge" style="editableCssRules=path;shape=image;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjQuMCBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyMyBGb250aWNvbnMsIEluYy4gLS0+PHN0eWxlIHR5cGU9InRleHQvY3NzIj5wYXRoIHtmaWxsOiMwMDAwMDA7fTwvc3R5bGU+PHBhdGggZD0iTTAgNjRDMCAyOC43IDI4LjcgMCA2NCAwSDIyNFYxMjhjMCAxNy43IDE0LjMgMzIgMzIgMzJIMzg0VjQ0OGMwIDM1LjMtMjguNyA2NC02NCA2NEg2NGMtMzUuMyAwLTY0LTI4LjctNjQtNjRWNjR6bTM4NCA2NEgyNTZWMEwzODQgMTI4eiIvPjwvc3ZnPg==;connectable=0;movable=1;verticalLabelPosition=bottom;resizable=1;rotatable=0;cloneable=0;deletable=1;recursiveResize=0;imageBackground=none;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="-120" y="270" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=39;exitPerimeter=0;" parent="1" source="fE0oB8jx1l7CBFk6Y13O-9" target="fE0oB8jx1l7CBFk6Y13O-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-9" value="Vector Database&lt;div&gt;(Cosmos DB)&lt;/div&gt;" style="image;aspect=fixed;html=1;points=[[0.5,1,0,0,39]];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Cosmos_DB.svg;perimeterSpacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="261.5" width="57" height="57" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="fE0oB8jx1l7CBFk6Y13O-14" target="fE0oB8jx1l7CBFk6Y13O-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="fE0oB8jx1l7CBFk6Y13O-14" target="fE0oB8jx1l7CBFk6Y13O-21" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-14" value="Frontend Interface&lt;div&gt;&lt;div&gt;(React)&lt;/div&gt;&lt;/div&gt;" style="image;aspect=fixed;html=1;points=[[0.5,1,0,0,41]];align=center;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;perimeterSpacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="440" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="fE0oB8jx1l7CBFk6Y13O-7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-70" y="290" as="sourcePoint"/>
+                        <mxPoint x="-8" y="360" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-19" value="Input Data&lt;div&gt;(json, audio, email etc)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.917;entryY=0.172;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="fE0oB8jx1l7CBFk6Y13O-19" target="fE0oB8jx1l7CBFk6Y13O-14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-21" value="Summarised Data&lt;div&gt;(json)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="490" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fE0oB8jx1l7CBFk6Y13O-24" value="Speech to Text&lt;div&gt;(Transcription)&lt;/div&gt;" style="image;aspect=fixed;html=1;points=[[0.5,0,0,0,0]];align=center;fontSize=12;image=img/lib/azure2/ai_machine_learning/Cognitive_Services.svg;perimeterSpacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="401" y="610" width="68" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="ZGL_hoHewfVaquy0yPkS-1" value="Document Intelligence&lt;div&gt;(Semantic Chunking)&lt;/div&gt;" style="image;aspect=fixed;html=1;points=[[0.5,0,0,0,0]];align=center;fontSize=12;image=img/lib/azure2/ai_machine_learning/Cognitive_Services.svg;perimeterSpacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="78" y="84" width="68" height="48" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
