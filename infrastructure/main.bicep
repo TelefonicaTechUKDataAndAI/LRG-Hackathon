@@ -6,28 +6,36 @@ param location string = resourceGroup().location
 param councilName string
 
 @description('Name for the Speech service')
-param speechServiceName string = toLower('lrgspeechservice${councilName}')
+param speechServiceName string = toLower('lrgspeech${councilName}')
 
 @description('SKU for the Speech service')
+@allowed([
+  'Free'
+  'S0'
+])
 param speechSkuName string = 'S0'
 
 @description('Name for the App Service')
 param appServiceName string = toLower('lrgappservice${councilName}')
 
 @description('SKU for the App Service')
-param appServiceSkuName string = 'F1'
+@allowed([
+  'F1'
+  'B1'
+])
+param appServiceSkuName string = 'B1'
 
 @description('Name for the Azure Cognitive Search service. Must be between 2 and 60 characters, using lowercase letters, digits, or dashes.')
 @minLength(2)
 @maxLength(60)
-param searchServiceName string = toLower('searchservice${councilName}')
+param searchServiceName string = toLower('search${councilName}')
 
 @description('Pricing tier for the Azure Cognitive Search service.')
 @allowed([
   'free'
   'basic'
 ])
-param searchSku string = 'free'
+param searchSku string = 'basic'
 
 @description('Number of replicas for the Azure Cognitive Search service.')
 @minValue(1)
@@ -48,6 +56,9 @@ var storageAccountName = toLower('sa${councilName}lrg01')
 // Ensure the storage account name is within the length limit
 var truncatedStorageAccountName = take(storageAccountName, 24)
 
+// Determine the App Service Plan tier based on the SKU
+var appServicePlanTier = appServiceSkuName == 'F1' ? 'Free' : 'Basic'
+
 // Resources
 
 // Speech Service Resource
@@ -67,11 +78,11 @@ resource speechService 'Microsoft.CognitiveServices/accounts@2022-12-01' = {
 
 // App Service Plan
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
-  name: appServiceName
+  name: '${appServiceName}plan'
   location: location
   sku: {
     name: appServiceSkuName
-    tier: 'Free'
+    tier: appServicePlanTier
   }
   properties: {
     reserved: true
