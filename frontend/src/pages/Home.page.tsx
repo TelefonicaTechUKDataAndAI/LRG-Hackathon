@@ -8,30 +8,51 @@ export function HomePage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const textMessageCreated = (message: string) => {
-    setMessages((oldMessages) => [...oldMessages, { message, role: 'person' }]);
+  const handleError = async (error: Response) => {
+    const contentType = error.headers.get('content-type');
+    let errorDetail = 'Unknown Error - Status Code '.concat(error.status.toString());
 
-    setLoading(true);
+    if (contentType && contentType.indexOf('application/json') !== -1) {
+      errorDetail = (await error.json()).detail;
+    }
 
-    fetch('/api/process', {
+    setMessages((oldMessages) => [
+      ...oldMessages,
+      { message: 'Error: '.concat(errorDetail), role: 'bot', type: 'error' },
+    ]);
+    setLoading(false);
+  };
+
+  const sendChatRequest = (endpoint: string, headers: any, body: any) => {
+    fetch(endpoint, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ body: message }),
+      headers,
+      body,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        return Promise.reject(response);
+      })
       .then((data) => {
         setMessages((oldMessages) => [...oldMessages, { message: data.response, role: 'bot' }]);
         setLoading(false);
       })
-      .catch((error) => {
-        setMessages((oldMessages) => [
-          ...oldMessages,
-          { message: 'Error: '.concat(error), role: 'bot' },
-        ]);
-        setLoading(false);
-      });
+      .catch(async (error) => handleError(error));
+  };
+
+  const textMessageCreated = (message: string) => {
+    setMessages((oldMessages) => [...oldMessages, { message, role: 'person' }]);
+    setLoading(true);
+
+    sendChatRequest(
+      '/api/process',
+      {
+        'Content-Type': 'application/json',
+      },
+      JSON.stringify({ body: message })
+    );
   };
 
   const audioFileUploaded = (file: File | null) => {
@@ -45,29 +66,7 @@ export function HomePage() {
     const formData = new FormData();
     formData.append('request', file);
 
-    fetch('/api/process-audio-file', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return Promise.reject(response);
-      })
-      .then((data) => {
-        setMessages((oldMessages) => [...oldMessages, { message: data.response, role: 'bot' }]);
-        setLoading(false);
-      })
-      .catch(async (error) => {
-        const errorDetail = await error.json();
-
-        setMessages((oldMessages) => [
-          ...oldMessages,
-          { message: 'Error: '.concat(errorDetail.detail), role: 'bot', type: 'error' },
-        ]);
-        setLoading(false);
-      });
+    sendChatRequest('/api/process-audio-file', {}, formData);
   };
 
   const clearChatHistory = () => setMessages([]);

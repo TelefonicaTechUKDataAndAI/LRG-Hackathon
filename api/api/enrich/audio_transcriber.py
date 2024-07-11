@@ -12,9 +12,9 @@ class AudioTranscriber:
         )
 
         self.speech_config.speech_recognition_language = "en-US"
-
-    async def transcribe_from_stream(self, file_name):
-        audio_config = speechsdk.audio.AudioConfig(filename=file_name)
+   
+    async def transcribe_from_file(self, file_name):
+        audio_config = speechsdk.audio.AudioConfig(filename=file_name)    
 
         speech_recognizer = speechsdk.SpeechRecognizer(
             speech_config=self.speech_config,
