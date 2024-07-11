@@ -8,8 +8,10 @@ from langchain_text_splitters import CharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI
 from langchain_community.retrievers import AzureAISearchRetriever
+from langchain_community.document_loaders import Docx2txtLoader
 
 
+dotenv.load_dotenv()
 
 class SearchHandler:
     def __init__(self) -> None:
@@ -34,14 +36,18 @@ class SearchHandler:
     def create_vector_index(self):
 
         folder_path = "./docs/"
-
         for doc in os.listdir(folder_path):
 
             doc_path = os.path.join(folder_path, doc)
-            documents = TextLoader.open(doc_path, encoding="utf-8").load()
+            if doc_path.endswith('.docx'):
+                document = Docx2txtLoader(doc_path).load()
+            else:
+                # Assuming other documents are plain text for simplicity
+                loader = TextLoader(doc_path, encoding="utf-8")
+                document = loader.load()
 
             text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-            docs = text_splitter.split_documents(documents)
+            docs = text_splitter.split_documents(document)
 
             self.vector_store.add_documents(documents=docs)
 
@@ -54,26 +60,6 @@ class SearchHandler:
 
         return docs[0].page_content
 
-    def get_chat_response(self, input_text):
-        search_response = self.get_query_response(input_text)
-        prompt = ChatPromptTemplate.from_messages(
-            [
-                (
-                    "system",
-                    "You are a helpful assistant that answers questions based only on the information provided.",
-                ),
-                ("human", "{input}. Respond using only the following information: {information}"),
-            ]
-        )
 
-        chain = prompt | self.llm
-        response = chain.invoke(
-            {
-                "input": input_text,
-                "information": search_response
-            }
-        )
-
-        return response
-
-#SearchHandler().create_vector_index()
+SearchHandler().create_vector_index()
+#print(SearchHandler().get_query_response("Complaints procedure"))

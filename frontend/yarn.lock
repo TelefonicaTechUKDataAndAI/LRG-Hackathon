@@ -2112,17 +2112,17 @@
     "@types/express" "^4.7.0"
     file-system-cache "2.3.0"
 
-"@tabler/icons-react@^3.9.0":
-  version "3.9.0"
-  resolved "https://registry.npmjs.org/@tabler/icons-react/-/icons-react-3.9.0.tgz"
-  integrity sha512-7Fbcrb5LYBGd9rwfkgrJsvLYGqPqO4WV3u6lfqE2wRzEVcevDQcdvo8toKp5Jcc66MPMEmMg+/tnUGwFIKQmUQ==
+"@tabler/icons-react@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.npmjs.org/@tabler/icons-react/-/icons-react-3.10.0.tgz"
+  integrity sha512-FTES0wJLIV+M9Ggng0j/6Kn/j43ZuBukR5n6DNV8Npk4woPCDcRjA+2KzKQyvSdwtPMAM6o1e8fQBPDS337Spg==
   dependencies:
-    "@tabler/icons" "3.9.0"
+    "@tabler/icons" "3.10.0"
 
-"@tabler/icons@3.9.0":
-  version "3.9.0"
-  resolved "https://registry.npmjs.org/@tabler/icons/-/icons-3.9.0.tgz"
-  integrity sha512-wZAwEu4iI0WmUA/bjstzNYri13D8X14f/SCRrzr2MyU+WP/6Vd+xq4YLM52dOS8V6ZVt+ujuE9IFkuJdsdSVAQ==
+"@tabler/icons@3.10.0":
+  version "3.10.0"
+  resolved "https://registry.npmjs.org/@tabler/icons/-/icons-3.10.0.tgz"
+  integrity sha512-jCMO+hDTw8Gn1CNb15zIENLQ9b0UplGXtjMnEUhDoKH+Q4fta8tBLUxZpPpFtpV+q+gzGqfM76xNAoD1GBpmnA==
 
 "@tanstack/query-core@5.49.1":
   version "5.49.1"

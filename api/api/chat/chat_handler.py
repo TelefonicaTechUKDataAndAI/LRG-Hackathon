@@ -1,6 +1,9 @@
 import os
 from langchain_openai import AzureChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
+from api.search.search_handler import SearchHandler
+
+search_handler = SearchHandler()
 
 
 class ChatHandler:
@@ -10,6 +13,8 @@ class ChatHandler:
         )
 
     def get_chat_response(self, input_text):
+
+        search_response = search_handler.get_query_response(input_text)
         prompt = ChatPromptTemplate.from_messages(
             [
                 (
@@ -23,7 +28,7 @@ class ChatHandler:
                     Only return the JSON object. Do not include any additional information.                
                     """,
                 ),
-                ("human", "{input}"),
+                ("human", "{input}. Respond using only the information in the following complaints procedures: {information}"),
             ]
         )
 
@@ -31,6 +36,7 @@ class ChatHandler:
         response = chain.invoke(
             {
                 "input": input_text,
+                "information": search_response
             }
         )
 

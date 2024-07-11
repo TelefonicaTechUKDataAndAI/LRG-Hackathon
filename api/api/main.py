@@ -5,7 +5,6 @@ from fastapi import FastAPI, HTTPException, UploadFile
 from pydantic import BaseModel
 
 from api.chat.chat_handler import ChatHandler
-from api.search.search_handler import SearchHandler
 from api.enrich.audio_converter import AudioConverter
 from api.enrich.audio_transcriber import AudioTranscriber
 
@@ -15,7 +14,6 @@ app = FastAPI()
 
 chat_handler = ChatHandler()
 audio_transcriber = AudioTranscriber()
-search_handler = SearchHandler()
 
 class ProcessRequest(BaseModel):
     body: str
