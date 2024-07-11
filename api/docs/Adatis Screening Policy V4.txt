@@ -1,249 +1,0 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ADATIS SCREENING POLICY
-
-
-
-
-
-
-
-
-
-
-
-Version 1.0   |   17th May 2021
-
-
-Table of Contents
-
-1	Table of Contents	1
-2	Introduction	2
-3	Purpose and Scope	2
-4	Procedure	2
-4.1	Pre Offer	2
-4.2	Conditional Offer	2
-5	Pre-Employment	3
-5.1	Screening and Background Checks	3
-5.2	Mandatory Screening Checks	3
-5.3	Potential Adverse Decision Not To Hire	3
-5.4	Additional Screening Checks	4
-6	During Employment	4
-7	Retention	4
-8	Roles and Responsibilities 	8
-Appendix 1 – International Background Screening Matrix	9
-9	Document Control	11
-9.1	Revision History	11
-Reference Information	12
-
-
-
-Introduction
-Adatis is committed to the protection of information and reducing the risk to the people, goods and services it delivers, and as part of this commitment, this formal screening policy is employed. This policy supports Adatis’s People Team security responsibilities and ensures best practice occurs in pre-employment screening.
-
-Whilst this policy aims to be as comprehensive as possible, it is not exhaustive, and Adatis’s People team may on certain occasions seek to undertake further screening depending on the requirements of the role to be performed and the contractual commitments to customers where repeat screening based on length of service is a stipulation of the contract. 
-
-Adatis’s Pre-Employment screening practices and procedures are compatible with the relevant legislation, in particular, the DPA (2018), GDPR (2018) and Employment Rights Act (1996) and is proportionate to the business requirements. The process is designed so that it does not interfere unduly with the individual’s right to privacy and protection or disclose any information that could be used in a discriminatory way.
-Purpose and Scope
-The purpose of this policy is to define the background screening procedure and checks conducted pre-hiring on all potential employees. The scope of the policy applies to candidates who go through our company’s hiring process. It may also apply to internal candidates who are being considered for a promotion or transfer.
-The main purpose of adopting a screening process is Adatis’s commitment to adopt best practices to improve the quality of hire, mitigate against bad hires or wrongful employment, protect the company’s reputation, and enhance workplace safety and security. 
-The People team are eligible and authorised to carry out screening checks. It is their responsibility for the implementation and maintenance of this policy, but annual reviews and any subsequent amendments will be carried out in conjunction with the Information Security and Data Protection Officer.
-Procedure
-This section outlines the procedure to be followed during the recruitment and selection process, but readers should request further advice and guidance from the People team in regard to specific regional variations on “right to work”.
-Pre Offer
-Right to work
-An initial assessment is required for all applications of employment.  This is done at the application stage via a questionnaire on our ATS system and again during the telephone interview stage. The ATS stores candidates responses, which confirm the right to work.
-Conditional Offer
-All employment offer documentation should include the statement that a condition to hire is subject to satisfactory background screening checks and, where necessary for the role, financial background checks (currently Finance roles).
-Pre-Employment 
-Screening and Background Checks
-Screening and background checks commence on all potential permanent employees as soon as an offer is accepted. The permitted screening requirement varies upon region. (refer to Appendix 1 for regional background screening checks per location)
-This screening process runs concurrent to the issue of a contract of employment. Before the employee’s commencement date, the following checks, as outlined in Appendix 1, will have to be underway or in place, depending on the role.
-In the event that it is not possible to complete full background checks before employment is due to start, then as a minimum, we require all employees DBS checks (or international equivalent) to be completed prior to the commencement date.
-On occasion, we may accept minor discrepancies highlighted in the screening report if these are deemed not to be of material significance and that the process was marked complete or if the variance is deemed to be minor. An example may be a discrepancy in job title but where the role is identifiable,  specific name of qualification or insignificant start and end dates (within one month).
-All  UK and international screening requirements are detailed in Appendix 1.
-Mandatory Screening Checks
-Formal offers of employment are made on condition of the result of the following checks being made by the People Team:
-* Employee applications, CV details, experience and qualifications must be matched against a job description to verify the potential suitability of the applicant
-* Interviews must be conducted on an individual basis to verify suitability
-* Applicant's identity must be verified via a passport or a driving licence
-* Suitable documentary evidence of the right to live and work in their respective country of employment under current legislation if applicable either by a valid passport and, where applicable, the accompanying visa or work permit
-* Professional references confirmation from previous employer to cover period of 7 years
-* Highest level of education. Academic and professional qualifications must be confirmed by requesting original printed copies (certified copies will suffice if originals are not available) of the most relevant qualifications
-* Disclosure and Barring Services (formerly CRB) checks - (Basic Disclosure) or international equivalent
-* Verification of address details 
-* 5 years’ employment history
-If we discover a candidate has supplied false or misleading information to secure employment, we will investigate this as a disciplinary matter. Potentially this is gross misconduct. Infringement may lead us to end employment, but an individual’s response will be taken into account.
-Potential Adverse Decision Not To Hire
-If a candidate’s employment offer is withdrawn following completion of the background screen process, the People team will provide feedback to the candidate and allow the candidate the opportunity to respond.  
-
-
-Additional Screening Checks
-Depending on the role the individual is being appointed for, and in the event of particular contractual obligations defined by customers or suppliers, Adatis may decide to undertake further screening, which may include the checks listed below:
-* Verification of gaps between employment or address history
-* Further history of address and employment
-* Financial Credit History Checks
-* FCA 
-* International Criminal Search
-* Terrorism watch list checks
-* Enhanced DBS checks
-* UK Government Security Clearance (BPSS Check)
-During Employment 
-There may be instances where further screening is required once an individual has joined the organisation. These could include transfer to a post with additional responsibilities (e.g. Finance) promotion, commencement of a new contract, or regulatory or national security vetting requirements. The checks may be similar to those outlined above but may not require as much detail as the initial screening checks. Adatis aims to ensure any post-employment screening undertaken is reasonable and proportionate.
-Retention
-In order to comply with GDPR, the People Team will contact the external screening company every 6 months to delete individual reports completed 6 months prior. The requirement for this is because this personal and sensitive information to be held by a third party is deemed no longer necessary. However, once the checks are complete as part of the onboarding process, the People Team will take a snapshot of the individual check to demonstrate it was completed to a satisfactory level, and this will be saved on the individual’s personnel folder on Bamboo. 
-The process requires the external screening company to delete individual reports after 6 months from the date of completion. This coincides with Adatis’s probation period, and once employment is confirmed, the requirement for this personal and sensitive information to be held by a third party is deemed no longer necessary.
-
-
-Contractors
-Pre-hiring Screening for Contractors
-All contracts agreed and signed with contractors should clearly outline that their ability to work on the contract will be subject to the successful completion of checks. 
-In the case of contracting companies/agencies (and additionally where third party vetting agencies are employed), there should be a requirement that any individuals who will work on the contract agreed with Adatis must be pre-screened according to Adatis’s requirements.  The contracting company/agency must be able to demonstrate that the required checks have been carried out satisfactorily, and Adatis must reserve the right to audit their processes. Where screening is not able to be undertaken to the minimum requirements for contractors (urgent hires, very short term appointments), additional measures should be implemented whilst on site such as escorting at all times within secure working areas and distinguishable security passes. 
-When a contractor is engaged on more than one occasion, it should not be assumed that their circumstances have remained unchanged between periods of engagement. At the beginning of each period of re-engagement, the Adatis People Team will ensure that the contractor poses no greater risk than previously. If the elapsed time between engagements exceeds 6 months then a repeat of the entire pre-employment screening process is required. Where contractors are re-engaged within periods of less than 6 months, the People Team may ask a series of questions to confirm that the contractor’s circumstances give no greater cause for concern than during the initial period of engagement.
-Hiring agreements with contractors or third parties should include: 
-* Details of the checks required 
-* A statement to the effect that the contracting company/agency will not receive payment for their services unless it provides staff who have been adequately screened
-* A statement to the effect the company/agency will be liable for financial penalties if it is discovered that contracting staff have not been adequately screened
-* A statement that Adatis retains the right to audit the screening process at any time
-* A confidentiality agreement  
-* Appropriate personal or business insurance
-* The contract should specify where the work should be carried out and who should have access to that material (i.e. named individuals)
-* A general policy on procedures to protect organisational assets
-* Procedures to determine whether any compromise of the assets, e.g. loss or modification of data, has occurred
-* Controls to ensure the return or destruction of information and assets at the end of, or at an agreed point in time during, the contract
-* Restrictions on copying and disclosing information
-* The right to monitor, and revoke, user activity
-
-Venturi’s details
-Permanent
-As standard:
-* Internet Search and Social Media Screening (Standard)
-* Technical Testimonials – Pre/Post final interview (on request)
-* References – Post offer acceptance with candidate having handed in notice with current employer
-
-Typically, most of Venturi clients do permanent onboarding themselves, however we can offer:
-* DBS Security Clearance Vetting – On request – Up to 2 weeks - £30
-* BPSS Security Clearance Vetting – On request – Up to 3 weeks - £90
-* Photo/Video ID Verification
-* Proof of Address Verification
-
-Contractor
-* Internet Search and Social Media Screening – Standard – 24 Hours
-* References (Confirmation of Dates) – On placement - 48-72 Hours
-* Technical Testimonials – On request - 72 Hours 
-* DBS Security Clearance Vetting – On request – Up to 2 weeks - £30 Charge
-* BPSS Security Clearance Vetting – On request – Up to 3 weeks - £90 Charge
-* Companies House Company Verification – Standard – 24 Hours
-* VAT Certification Verification – Standard – 24 Hours
-* Insurance Documents Screening – Professional Indemnity - £1 Million Pounds Cover, Public Liability - £1 Million Pounds Cover – Standard – 24 Hours
-* Company Director Screening – Standard – 24 Hours
-* UK Umbrella Accreditation Verification – Standard – 24 Hours
-* Video ID Verification – Standard – 24 Hours 
-* Proof of Address Verification – Standard – 24 Hours
-* Business Bank Account Verification – Standard – 24 Hours
-
-Contractor Inside IR35
-* Internet Search and Social Media Screening – Standard – 24 Hours
-* References (Confirmation of Dates) – On placement - 48-72 Hours
-* Technical Testimonials – On request - 72 Hours 
-* DBS Security Clearance Vetting – On request – Up to 2 weeks - £30 Charge
-* BPSS Security Clearance Vetting – On request – Up to 3 weeks - £90 Charge
-* UK Umbrella Accreditation Verification – Standard – 24 Hours
-* Video ID Verification – Standard – 24 Hours 
-* Proof of Address Verification – Standard – 24 Hours
-
-Contractor Outside IR35
-* Internet Search and Social Media Screening – Standard – 24 Hours
-* References (Confirmation of Dates) – On placement - 48-72 Hours
-* Technical Testimonials – On request - 72 Hours 
-* DBS Security Clearance Vetting – On request – Up to 2 weeks - £30 Charge
-* BPSS Security Clearance Vetting – On request – Up to 3 weeks - £90 Charge
-* Companies House Company Verification – Standard – 24 Hours
-* VAT Certification Verification – Standard – 24 Hours
-* Insurance Documents Screening – Professional Indemnity - £1 Million Pounds Cover, Public Liability - £1 Million Pounds Cover – Standard – 24 Hours
-* Company Director Screening – Standard – 24 Hours
-* Video ID Verification – Standard – 24 Hours 
-* Proof of Address Verification – Standard – 24 Hours
-* Business Bank Account Verification – Standard – 24 Hours
-
-
-Sentinels Details 
-Passport and Right to Work on file with 2 references for all contractors
-
-Roles and Responsibilities 
-RoleResponsibilityPeople TeamLead on the selection and recruitment of employees. Responsible for conducting and commissioning verification checks. 
-Coordinate the End-to-End Recruitment Process and management of third party (recruitment/screening agency) relationships in the process.Line ManagerLeading the interviewing and selection of candidates.
-Communicate the relevant screening requirements and define the rationale for any particular further screening requirements.Data Protection OfficerEnsure compliance with DPA during the process.
-
-
-Appendix 1 – International Background Screening Matrix 
-
-UKBulgariaIndiaCriminal Checks???Education???Employment???ID Verification / Check / Cards???
-Right to Work???Professional Reference Check???
-UK – Use an external provider called Secure Screening Services to carry out their checks. 
-* DBS Basic
-* 5 Year Employment History with Gap Analysis
-* Global Qualifications Check
-* ID Verification
-* Digital Right to Work Check
-
-INDIA - Use an external provider called First Advantage to carry out their checks.
-* Employment Verification – Past 2 employers
-* Education Verification – Highest Qualification 
-* Court Record Verification- (eCourt) 
-* Professional Reference.
-
-BULGARIA - Carries out the checks themselves. Due to BG/EU regulations, ID cards cannot be scanned and kept on record. 
-* Employment
-* Education
-* ID Cards
-
-Appendix 2 – International Background Screening Matrix with Descriptors
-
-UKBulgariaIndiaCriminal ChecksYes – DBS Basic.Varies – employees can complete this individually and provide it to us. Employer can request, if it is a must.*Yes – Court Record Verification (eCourt).EducationYes – Highest Qualification.Yes – Copies of Diplomas are provided prior to contract signing. Validity checked through NACID.bg.Yes – Highest Qualification.EmploymentYes – 5-Year Check with Gap Analysis.Yes - Labour Book provided prior to contract signing.Yes – Previous 2 employers.ID Verification / Check / CardsYes – Uses biometric, facial recognition software in conjunction with documentation to confirm identity. Yes – Check the ID card when signing the Employment Contract (document validity through MVR.bg).Yes – This is carried out internally and not by the external provider.*Right to WorkYesNoNoProfessional Reference CheckNoNoYes
-* Criminal records cannot be obtained for any of our roles, only for roles in the Finance/Police industry. However, employees can obtain this individually and present it to us, but we cannot keep this on record due to GDPR and EU regulations. If this is a must for some clients, we would need to consider taking the risk, if audited, to bear the potential sanction.
-* India carries out this check the day the employee joins as part of the documentation, we keep a copy of the ID proof which is uploaded into Bamboo HR.  Any of the documents such as Aadhar Card / PAN Card/ Passport/ Driving License, are considered as part of ID Proof for an Individual.   
-
-Document Control 
-Revision History 
-RevisionDateUpdated ByComments1.017-May-2021Tasnima MazidFirst draft for review2.017-Oct-2021Tasnima MazidMade updates to the documents3.003-Dec-2021Tasnima MazidMade updates to the documents4.004-Dec-2021Tasnima MazidMade updates to the matrix5.006-Dec-2021Tasnima MazidAdded Venturi background checks6.029-May-2024Tasnima Mazid / Elitsa Georgieva / Trupti OzaAmended Appendix 1 and added a new Appendix 2 / Added BG details to Appendix 2 / Added IN details to Appendix 2
-
-
-Reference Information
-
-Document Author(s):
-AdatisTasnima Mazid (Recruitment Operations Lead) and Deborah Upton, Co-Author (Head of People).Distribution: Document ClassificationAdatis Confidential
-
-
-
-
-0Adatis Screening Policy 
-
-
-
-
-1
-Version 1.1
-
-0Adatis Screening Policy
-
-
-
