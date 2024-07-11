@@ -60,6 +60,5 @@ class SearchHandler:
 
         return docs[0].page_content
 
-
-SearchHandler().create_vector_index()
-#print(SearchHandler().get_query_response("Complaints procedure"))
+# Uncomment this to create or add to the vector index in AI search
+#SearchHandler().create_vector_index()
