@@ -8,10 +8,8 @@ from langchain_text_splitters import CharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI
 from langchain_community.retrievers import AzureAISearchRetriever
-import docx2txt
 
 
-dotenv.load_dotenv()
 
 class SearchHandler:
     def __init__(self) -> None:
@@ -40,7 +38,7 @@ class SearchHandler:
         for doc in os.listdir(folder_path):
 
             doc_path = os.path.join(folder_path, doc)
-            documents = docx2txt.process(doc_path)
+            documents = TextLoader.open(doc_path, encoding="utf-8").load()
 
             text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
             docs = text_splitter.split_documents(documents)
@@ -78,4 +76,4 @@ class SearchHandler:
 
         return response
 
-SearchHandler().create_vector_index()
+#SearchHandler().create_vector_index()

@@ -4,9 +4,9 @@ import dotenv
 from fastapi import FastAPI, HTTPException, UploadFile
 from pydantic import BaseModel
 
-from chat.chat_handler import ChatHandler
-from search.search_handler import SearchHandler
-from enrich.audio_transcriber import AudioTranscriber
+from api.chat.chat_handler import ChatHandler
+from api.search.search_handler import SearchHandler
+from api.enrich.audio_transcriber import AudioTranscriber
 
 dotenv.load_dotenv()
 
