@@ -15,6 +15,7 @@ python-multipart = "^0.0.9"
 langchain-community = "^0.2.7"
 azure-search-documents = "^11.4.0"
 azure-identity = "^1.17.1"
+docx = "^0.2.4"
 
 
 [build-system]
