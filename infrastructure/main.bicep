@@ -95,12 +95,27 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
   }
 }
 
-// App Service
-resource appService 'Microsoft.Web/sites@2021-02-01' = {
-  name: appServiceName
+// Python App Service
+resource pythonAppService 'Microsoft.Web/sites@2021-02-01' = {
+  name: '${appServiceName}-python'
   location: location
   properties: {
     serverFarmId: appServicePlan.id
+    siteConfig: {
+      linuxFxVersion: 'PYTHON|3.8'
+    }
+  }
+}
+
+// React App Service
+resource reactAppService 'Microsoft.Web/sites@2021-02-01' = {
+  name: '${appServiceName}-react'
+  location: location
+  properties: {
+    serverFarmId: appServicePlan.id
+    siteConfig: {
+      linuxFxVersion: 'NODE|20-lts'
+    }
   }
 }
 
