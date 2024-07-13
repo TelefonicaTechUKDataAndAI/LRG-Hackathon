@@ -1,0 +1,86 @@
+# Import Libraries
+import os
+import openai
+import pandas as pd
+import json
+from langchain_openai import AzureChatOpenAI  # Ensure correct import for Azure OpenAI
+from langchain_core.prompts import ChatPromptTemplate  # Import necessary class for prompts
+
+# Set up your OpenAI and Azure credentials and configuration
+openai_key = "ENTER__API_KEY"
+openai_endpoint = "ENTER_END_POINT"
+openai_deployment_name = "ENTER_MODEL_NAME"
+openai_api_version = "2024-02-01" 
+
+# Set environment variables for Azure OpenAI configuration
+os.environ["OPENAI_API_VERSION"] = openai_api_version
+os.environ["OPENAI_API_KEY"] = openai_key
+os.environ["AZURE_OPENAI_ENDPOINT"] = openai_endpoint
+os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"] = openai_deployment_name
+
+class ChatHandler:
+    def __init__(self) -> None:
+        # Initialize the AzureChatOpenAI instance using the deployment name from environment variables
+        self.llm = AzureChatOpenAI(
+            azure_deployment=os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
+        )
+
+    def get_chat_response(self, input_text):
+        # Create a prompt template for categorising customer complaint emails. You can modify the prompt to best tailor your needs
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system",
+                    """You are a helpful assistant that is responsible for categorising customer complaint emails. For each complaint you receive you will take the content of the email and return a summary of the complaints.: 
+                    You will return your response in a JSON object that contains the following attributes:
+                    1. Type of Rodent (Rat, Mouse, Wasp) 
+                    2. Location (Kitchen, Attic, Garden, Basement, Fridge, Garage, Pantry, Living Room, Porch, Roof Space, Cupboards, Bathroom, Garbage Bins, Floorboards, Front Door, Garden)
+                    3. Time of Issue (e.g., last night, past month, two days ago, past two weeks, etc.)
+                    4. Duration (e.g., third time this week, over a month, been happening on and off, for a week now, almost three months, etc.)
+                    5. Severity (e.g., serious problem, very alarming, concerning, very noisy at night, major issue, etc.)
+
+                    Only return the JSON object. Do not include any additional information.                
+                    """,
+                ),
+                ("human", "{input}"),
+            ]
+        )
+
+        # Combine the prompt with the language model and get the response
+        chain = prompt | self.llm
+        response = chain.invoke({"input": input_text})
+        
+        # Access the 'content' attribute directly from the AIMessage object
+        content = response.content
+        # Extract the JSON object from the response content
+        json_start = content.find("{")
+        json_end = content.rfind("}") + 1
+        json_str = content[json_start:json_end]
+        
+        # Convert the JSON string to a dictionary
+        response_dict = json.loads(json_str)
+        
+        return response_dict
+    
+	# This is assuming the free text field is called 'description'. Please change this to match the name of the column in your report
+    def categorise_reviews_in_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
+        # Ensure the 'description' column exists in the DataFrame
+        if 'description' not in df.columns:
+            raise ValueError("The DataFrame must contain a 'description' column")
+
+        # Apply the get_chat_response method to each description in the DataFrame
+        df['category'] = df['description'].apply(self.get_chat_response)
+        
+        return df
+
+#  'dataset' holds the input data for this script
+df = dataset 
+
+# Initialize the ChatHandler
+handler = ChatHandler()
+
+# Categorise the reviews in the DataFrame and store the result in a new DataFrame
+df_with_categories = handler.categorise_reviews_in_dataframe(df)
+
+# Print the DataFrame with the categorised complaints
+print(df_with_categories)
