@@ -18,6 +18,7 @@ azure-identity = "^1.17.1"
 docx = "^0.2.4"
 python-docx = "^1.1.2"
 docx2txt = "^0.8"
+pypdf = "^5.6.0"
 azure-ai-projects = "^1.0.0b11"
 azure-ai-inference = "^1.0.0b9"
 

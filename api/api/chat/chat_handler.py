@@ -80,9 +80,15 @@ class AgentChatHandler:
         {input_text}
         This is the information from the audit document: {audit_text}
 
+        ## Requirements:
         Respond using only information from the following sources: 
          - Information from the Regulatory Reform Order 2005, which is available online
          - The relevant internal documentaion and guidelines: {search_response}
+
+        ## Guidelines:
+        - Always respond in a clear structure that mimics that of the audit document.
+        - Use Emoji's to help indicate differnent sections and types of feedback you are providing. 
+        - Always respond with valid markdown that will be rendered through a web app. 
         """
         run = self.agents_client.create_thread_and_process_run(
             agent_id = self.agent.id,

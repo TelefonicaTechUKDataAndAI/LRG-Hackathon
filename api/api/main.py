@@ -36,13 +36,14 @@ async def process(request: ProcessRequest) -> ProcessResponse:
 async def process_audit_file(request: UploadFile) -> ProcessResponse:
     # write the audit file to disk
     temp_file = tempfile.NamedTemporaryFile(delete=False)
+    file_ext = request.filename.split(".")[-1].lower()
 
     try:
         temp_file.write(await request.read())
         temp_file.close()
 
         # Process the audit file
-        AuditProcessor.extract_audit_text(temp_file.name)
+        AuditProcessor.extract_audit_text(temp_file.name, file_ext)
 
         # Return a success response
         return ProcessResponse(response="Audit file processed successfully ✅")
