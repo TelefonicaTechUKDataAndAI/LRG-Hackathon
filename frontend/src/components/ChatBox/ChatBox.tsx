@@ -77,7 +77,7 @@ export default function ChatBox({
             <Button onClick={onNewTextMessage} leftSection={<IconSend />}>
               Send
             </Button>
-            <Button onClick={onAudioFileClick} leftSection={<IconUpload />}>
+            {/* <Button onClick={onAudioFileClick} leftSection={<IconUpload />}>
               Upload Audio
             </Button>
             <Button
@@ -88,7 +88,7 @@ export default function ChatBox({
                 ? // ? 'Stop Recording" ('.concat(recorderControls.recordingTime.toString(), ')')
                   'Stop Recording'
                 : 'Start Recording'}
-            </Button>
+            </Button> */}
           </Group>
           <Group ml="auto">
             <Button variant="outline" onClick={chatHistoryCleared} leftSection={<IconClearAll />}>
