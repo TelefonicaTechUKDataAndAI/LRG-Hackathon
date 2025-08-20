@@ -1,10 +1,9 @@
-import { Button, FileInput, Group, Stack, Textarea } from '@mantine/core';
+import { Button, Group, Stack, Textarea } from '@mantine/core';
 import {
   IconClearAll,
-  IconMicrophone,
-  IconMicrophoneOff,
   IconSend,
   IconUpload,
+  IconTextScan2
 } from '@tabler/icons-react';
 import { useRef, useState } from 'react';
 import { useReactMediaRecorder } from 'react-media-recorder-2';
@@ -12,53 +11,48 @@ import { useReactMediaRecorder } from 'react-media-recorder-2';
 interface ChatBoxProps {
   textMessageCreated: (message: string) => void;
   chatHistoryCleared: () => void;
-  audioFileUploaded: (file: File | null) => void;
+  selectedFiles: (files: File[] | null) => void;
+  redactText: () => void;
 }
 
 export default function ChatBox({
   textMessageCreated,
   chatHistoryCleared,
-  audioFileUploaded,
+  selectedFiles,
+  redactText
 }: ChatBoxProps) {
   const [message, setMessage] = useState<string>('');
 
-  const hiddenFileInput = useRef<HTMLButtonElement>(null);
-  const onAudioFileClick = () => {
-    if (hiddenFileInput.current) {
-      hiddenFileInput.current.click();
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      onNewTextMessage();
     }
   };
-
+  
   const onNewTextMessage = () => {
     textMessageCreated(message);
     setMessage('');
   };
 
-  const onRecordingComplete = (blobUrl: string, blob: Blob) => {
-    const file = new File([blob], 'audio.wav', {
-      type: blob.type,
-    });
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
 
-    console.log(blob);
-
-    audioFileUploaded(file);
+  const onFolderSelection = () => {
+    if (hiddenFileInput.current) {
+      hiddenFileInput.current.value = '';
+      hiddenFileInput.current.click();
+    }
   };
 
-  const { status, startRecording, stopRecording } = useReactMediaRecorder({
-    audio: true,
-    blobPropertyBag: {
-      type: 'audio/webm',
-    },
-    onStop: onRecordingComplete,
-  });
-
-  const isRecording = () => status === 'recording';
-
-  const onRecordingClick = () => {
-    if (isRecording()) {
-      stopRecording();
+  // Handle file/folder selection
+  const onFilesSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      // Convert FileList to Array
+      const fileArray = Array.from(files)
+      selectedFiles(fileArray);
     } else {
-      startRecording();
+      selectedFiles(null);
     }
   };
 
@@ -71,24 +65,19 @@ export default function ChatBox({
           minRows={7}
           value={message}
           onChange={(e) => setMessage(e.currentTarget.value)}
+          onKeyDown={handleKeyDown}
         />
         <Group w="100%">
           <Group>
             <Button onClick={onNewTextMessage} leftSection={<IconSend />}>
               Send
             </Button>
-            {/* <Button onClick={onAudioFileClick} leftSection={<IconUpload />}>
-              Upload Audio
+            <Button onClick={onFolderSelection} leftSection={<IconUpload />}>
+              Select folder or file
             </Button>
-            <Button
-              leftSection={isRecording() ? <IconMicrophone /> : <IconMicrophoneOff />}
-              onClick={onRecordingClick}
-            >
-              {isRecording()
-                ? // ? 'Stop Recording" ('.concat(recorderControls.recordingTime.toString(), ')')
-                  'Stop Recording'
-                : 'Start Recording'}
-            </Button> */}
+            <Button onClick={redactText} leftSection={<IconTextScan2 />}>
+              Redact Text
+            </Button>
           </Group>
           <Group ml="auto">
             <Button variant="outline" onClick={chatHistoryCleared} leftSection={<IconClearAll />}>
@@ -96,13 +85,15 @@ export default function ChatBox({
             </Button>
           </Group>
         </Group>
-        <FileInput
-          label="Audio File"
-          description="Audio File"
-          placeholder="Audio File"
+        {/* Hidden native file input for folder/file selection */}
+        <input
+          type="file"
           style={{ display: 'none' }}
-          onChange={audioFileUploaded}
           ref={hiddenFileInput}
+          onChange={onFilesSelected}
+          multiple
+          // @ts-ignore
+          webkitdirectory="true"
         />
       </Stack>
     </>

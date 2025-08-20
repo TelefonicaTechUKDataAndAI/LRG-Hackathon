@@ -4,8 +4,13 @@ import ChatMessage from '@/domain/ChatMessage';
 import ChatBox from '@/components/ChatBox/ChatBox';
 import ChatWindow from '@/components/ChatWindow/ChatWindow';
 
+const welcomeMessage: ChatMessage = {
+  message: 'Welcome to the Somerset AI Hackathon Chatbot! How can I assist you today?',
+  role: 'bot',
+};
+
 export function HomePage() {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([welcomeMessage]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleError = async (error: Response) => {
@@ -55,21 +60,31 @@ export function HomePage() {
     );
   };
 
-  const audioFileUploaded = (file: File | null) => {
-    setMessages((oldMessages) => [
-      ...oldMessages,
-      { message: '🎵 Audio Uploaded...', role: 'person' },
-    ]);
+  const filesSelected = (files: File[] | null) => {
+      setMessages((oldMessages) => [
+          ...oldMessages,
+          { message: 'Files Selected...', role: 'person' },
+      ]);
+      setLoading(true);
+      const formData = new FormData();
 
-    setLoading(true);
+      if (files && files.length > 0) {
+          Array.from(files).forEach((file) => {
+              formData.append('files', file);
+          });
+      }
 
-    const formData = new FormData();
-    formData.append('request', file);
-
-    sendChatRequest('/api/process-audio-file', {}, formData);
+      sendChatRequest('/api/process-files', {}, formData);
   };
 
-  const clearChatHistory = () => setMessages([]);
+  const redactText = () => {
+    setMessages((oldMessages) => [...oldMessages, { message: "Beginning redaction...", role: 'bot' }]);
+    setLoading(true);
+
+    sendChatRequest('/api/redact-text', {}, {"output_destination": "C:\\Users\\Matt.How\\@SOURCE\\SOMERSET\\LRG-Hackathon\\redactions"});
+  };
+
+  const clearChatHistory = () => setMessages([welcomeMessage]);
 
   return (
     <Container fluid>
@@ -79,7 +94,8 @@ export function HomePage() {
           <ChatBox
             textMessageCreated={textMessageCreated}
             chatHistoryCleared={clearChatHistory}
-            audioFileUploaded={audioFileUploaded}
+            selectedFiles={filesSelected}
+            redactText={redactText}
           />
         </Box>
       </Stack>
