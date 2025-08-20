@@ -1,4 +1,4 @@
-import { Button, Group, Stack, Textarea } from '@mantine/core';
+import { Button, Group, Stack, Textarea, Paper, Text } from '@mantine/core';
 import {
   IconClearAll,
   IconSend,
@@ -57,7 +57,7 @@ export default function ChatBox({
   };
 
   return (
-    <>
+    <Paper withBorder radius="md" p="md" style={{ position: 'relative', borderColor: '#ccc', borderWidth: 1, borderStyle: 'solid' }}>
       <Stack>
         <Textarea
           placeholder="Type your message here"
@@ -68,22 +68,38 @@ export default function ChatBox({
           onKeyDown={handleKeyDown}
         />
         <Group w="100%">
-          <Group>
-            <Button onClick={onNewTextMessage} leftSection={<IconSend />}>
-              Send
-            </Button>
-            <Button onClick={onFolderSelection} leftSection={<IconUpload />}>
-              Select folder or file
-            </Button>
-            <Button onClick={redactText} leftSection={<IconTextScan2 />}>
-              Redact Text
-            </Button>
-          </Group>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
+            <Text size="xs" fw={700} c="gray.7" mb={2}>
+              Process
+            </Text>
+            <Paper withBorder radius="md" p="xs" style={{ borderColor: '#ccc', borderWidth: 1, borderStyle: 'solid', display: 'inline-block', textAlign: 'center' }}>
+            <Group>
+              <Button onClick={onFolderSelection} leftSection={<IconUpload />}>
+                Select folder or file
+              </Button>
+              <Button onClick={redactText} leftSection={<IconTextScan2 />}>
+                Redact Text
+              </Button>
+              </Group>
+            </Paper>
+          </div>
           <Group ml="auto">
-            <Button variant="outline" onClick={chatHistoryCleared} leftSection={<IconClearAll />}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
+            <Text size="xs" fw={700} c="gray.7" mb={2}>
+              Chat
+            </Text>
+            <Paper withBorder radius="md" p="xs" style={{ borderColor: '#ccc', borderWidth: 1, borderStyle: 'solid', display: 'inline-block', textAlign: 'center' }}>
+              <Group>
+              <Button onClick={onNewTextMessage} leftSection={<IconSend />}>
+                Send
+              </Button>
+              <Button variant="outline" onClick={chatHistoryCleared} leftSection={<IconClearAll />}>
               Clear Chat
             </Button>
-          </Group>
+            </Group>
+            </Paper>
+            </div>
+        </Group>
         </Group>
         {/* Hidden native file input for folder/file selection */}
         <input
@@ -96,6 +112,6 @@ export default function ChatBox({
           webkitdirectory="true"
         />
       </Stack>
-    </>
+    </Paper>
   );
 }
