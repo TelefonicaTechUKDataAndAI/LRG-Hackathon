@@ -62,8 +62,33 @@ class AgentChatHandler:
             )
 
             print(f"Fetched agent, ID: {self.agent.id}")
+    
+    def get_agentic_chat_response(self, input_text):
+        prompt_text = input_text
 
-    def get_agentic_chat_response(self, file):
+        run = self.agents_client.create_thread_and_process_run(
+            agent_id = self.agent.id,
+            thread = AgentThreadCreationOptions(
+                messages= [
+                    ThreadMessageOptions(
+                        role="user", content=prompt_text
+                    )
+                ]
+            )
+        )
+
+        if run.status == "failed":
+            print(f"Run failed with error: {run.last_error}")
+
+        messages = self.agents_client.messages.list(thread_id = run.thread_id, order=ListSortOrder.ASCENDING)
+        for msg in messages:
+             if msg.text_messages:
+                  last_text = msg.text_messages[-1]
+                  #print(f"{msg.role}: {last_text.text.value}")
+
+        return last_text.text.value
+
+    def get_agentic_redaction_response(self, file):
         text = file["text"]
         prompt_text = f""" 
         Redact this data: {text}

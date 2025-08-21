@@ -51,13 +51,7 @@ export function HomePage() {
     setMessages((oldMessages) => [...oldMessages, { message, role: 'person' }]);
     setLoading(true);
 
-    sendChatRequest(
-      '/api/process',
-      {
-        'Content-Type': 'application/json',
-      },
-      JSON.stringify({ body: message })
-    );
+    sendChatRequest('/api/process',{'Content-Type': 'application/json'},JSON.stringify({ body: message }));
   };
 
   const filesSelected = (files: File[] | null) => {
