@@ -16,7 +16,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <Logo />
           <Text c="white" fw={600}>
-            Microsoft and Telefónica Tech - Local Government Hackathon
+            Telefónica Tech - Lambeth AI Hackathon
           </Text>
         </Group>
       </AppShell.Header>
