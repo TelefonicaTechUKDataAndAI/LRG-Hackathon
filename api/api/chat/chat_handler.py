@@ -7,9 +7,6 @@ from azure.ai.agents import AgentsClient
 from azure.ai.agents.models import AgentThreadCreationOptions, ThreadMessageOptions, ListSortOrder
 from azure.identity import DefaultAzureCredential
 
-#from api.search.search_handler import SearchHandler
-#search_handler = SearchHandler()
-
 project_client = AIProjectClient(
     endpoint = os.environ["AZURE_AI_PROJECT_CONNECTION_STRING"],
     credential = DefaultAzureCredential()
