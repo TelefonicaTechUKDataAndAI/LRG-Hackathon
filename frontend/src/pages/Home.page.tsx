@@ -5,7 +5,7 @@ import ChatBox from '@/components/ChatBox/ChatBox';
 import ChatWindow from '@/components/ChatWindow/ChatWindow';
 
 const welcomeMessage: ChatMessage = {
-  message: 'Welcome to the Somerset AI Hackathon Chatbot! How can I assist you today?',
+  message: 'Welcome to the Lambeth AI Hackathon Chatbot! How can I assist you today?',
   role: 'bot',
 };
 
@@ -75,7 +75,7 @@ export function HomePage() {
     setMessages((oldMessages) => [...oldMessages, { message: "Beginning redaction...", role: 'bot' }]);
     setLoading(true);
 
-    sendChatRequest('/api/redact-text', {}, {"output_destination": "C:\\Users\\Matt.How\\@SOURCE\\SOMERSET\\LRG-Hackathon\\redactions"});
+    sendChatRequest('/api/redact-text', {}, {"output_destination": "C:\\Users\\Matt.How\\@SOURCE\\Lambeth\\LRG-Hackathon\\redactions"});
   };
 
   const clearChatHistory = () => setMessages([welcomeMessage]);
