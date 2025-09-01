@@ -8,7 +8,7 @@ from langchain_text_splitters import CharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI
 from langchain_community.retrievers import AzureAISearchRetriever
-from langchain_community.document_loaders import Docx2txtLoader
+from langchain_community.document_loaders import Docx2txtLoader, PyPDFLoader
 
 
 dotenv.load_dotenv()
@@ -41,6 +41,9 @@ class SearchHandler:
             doc_path = os.path.join(folder_path, doc)
             if doc_path.endswith('.docx'):
                 document = Docx2txtLoader(doc_path).load()
+            elif doc_path.endswith('.pdf'):
+                pdf_loader = PyPDFLoader(doc_path)
+                document = pdf_loader.load()
             else:
                 # Assuming other documents are plain text for simplicity
                 loader = TextLoader(doc_path, encoding="utf-8")
