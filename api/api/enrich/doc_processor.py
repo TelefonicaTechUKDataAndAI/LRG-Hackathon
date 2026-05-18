@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from langchain_community.document_loaders import Docx2txtLoader, PyPDFLoader
 
 class DocumentProcessor:
@@ -23,14 +24,22 @@ class DocumentProcessor:
                 document = Docx2txtLoader(input_path).load()
                 uploaded_file["filename"] = os.path.basename(input_path)
                 uploaded_file["text"] = DocumentProcessor.pre_process_text(document[0].page_content if document else "")
-            
+
             elif file_ext == 'pdf':
                 pdf_loader = PyPDFLoader(input_path)
                 document = pdf_loader.load()
                 uploaded_file["filename"] = os.path.basename(input_path)
                 uploaded_file["text"] = DocumentProcessor.pre_process_text(" ".join([page.page_content for page in document]) if document else "")
-        
+
+            elif file_ext in ['xlsx', 'xls']:
+                df = pd.read_excel(input_path)
+                # Convert each row to a dict, then collect all dicts in a list
+                rows_json = df.to_dict(orient='records')
+                uploaded_file["filename"] = os.path.basename(input_path)
+                uploaded_file["rows"] = rows_json
+
         except Exception as e:
+            raise ValueError(f"Failed to extract text from the document: {e}")
             raise ValueError(f"Failed to extract text from the document: {e}")
         
         return uploaded_file
