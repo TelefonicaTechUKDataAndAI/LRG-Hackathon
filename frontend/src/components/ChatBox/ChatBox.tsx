@@ -75,7 +75,7 @@ export default function ChatBox({
             <Paper withBorder radius="md" p="xs" style={{ borderColor: '#ccc', borderWidth: 1, borderStyle: 'solid', display: 'inline-block', textAlign: 'center' }}>
             <Group>
               <Button onClick={onFolderSelection} leftSection={<IconUpload />}>
-                Select folder or file
+                Select folder
               </Button>
               <Button onClick={redactText} leftSection={<IconTextScan2 />}>
                 Redact Text
