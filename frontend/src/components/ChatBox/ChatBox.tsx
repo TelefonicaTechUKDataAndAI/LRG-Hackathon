@@ -68,7 +68,7 @@ export default function ChatBox({
           onKeyDown={handleKeyDown}
         />
         <Group w="100%">
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
+          {/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
             <Text size="xs" fw={700} c="gray.7" mb={2}>
               Process
             </Text>
@@ -82,7 +82,7 @@ export default function ChatBox({
               </Button>
               </Group>
             </Paper>
-          </div>
+          </div> */}
           <Group ml="auto">
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
             <Text size="xs" fw={700} c="gray.7" mb={2}>

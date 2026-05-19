@@ -5,7 +5,7 @@ import ChatBox from '@/components/ChatBox/ChatBox';
 import ChatWindow from '@/components/ChatWindow/ChatWindow';
 
 const welcomeMessage: ChatMessage = {
-  message: 'Welcome to the Lambeth AI Hackathon Chatbot! How can I assist you today?',
+  message: 'Welcome to the Merton AI Hackathon Chatbot! How can I assist you today?',
   role: 'bot',
 };
 
