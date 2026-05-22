@@ -78,6 +78,18 @@ export function HomePage() {
     sendChatRequest('/api/redact-text', {}, {"output_destination": "C:\\Users\\Matt.How\\@SOURCE\\Lambeth\\LRG-Hackathon\\redactions"});
   };
 
+  const fetchPerson = (personId: number) => {
+    sendChatRequest('/api/fetch_record', { 'Content-Type': 'application/json' }, JSON.stringify({ personId }));
+  };
+
+  const logChat = (personId: number) => {
+    const requestBody = {
+      personId: personId,
+      messages: messages,
+    };
+
+    sendChatRequest('/api/log_chat', { 'Content-Type': 'application/json' }, JSON.stringify(requestBody));
+  }
   const clearChatHistory = () => setMessages([welcomeMessage]);
 
   return (
@@ -89,7 +101,8 @@ export function HomePage() {
             textMessageCreated={textMessageCreated}
             chatHistoryCleared={clearChatHistory}
             selectedFiles={filesSelected}
-            redactText={redactText}
+            fetchPerson={fetchPerson}
+            logChat={logChat}
           />
         </Box>
       </Stack>

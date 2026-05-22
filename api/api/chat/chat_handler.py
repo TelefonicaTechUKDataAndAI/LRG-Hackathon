@@ -12,102 +12,78 @@ project_client = AIProjectClient(
     credential = DefaultAzureCredential()
 )
 
-class ChatHandler:
-    def __init__(self) -> None:
-        self.llm = AzureChatOpenAI(
-            azure_deployment=os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
-        )
+# class ChatHandler:
+#     def __init__(self) -> None:
+#         self.llm = AzureChatOpenAI(
+#             azure_deployment=os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
+#         )
 
-    def get_agentic_chat_response(self, input_text):
+#     def get_agentic_chat_response(self, input_text):
 
-        #search_response = search_handler.get_query_response(input_text)
-        prompt = ChatPromptTemplate.from_messages(
-            [
-                (
-                    "system",
-                    """
-                    You are a redaction agent that will identify any personally identifiable information (PII) or comercially sensitive information in the input text and redact it. 
-                    You should process a input text in reasonable chunks and return the redacted text only, with no additional information or commentary.
-                    You will return your response in a JSON object that contains the following attributes:
-                    - 'category': The category that you have assigned to the complaint.
-                    - 'confidence': A number between 0 and 1 that represents how confident you are in your categorisation.
-                    - 'response': A string that contains the response that you would like to send to the customer.
+#         search_response = search_handler.get_query_response(input_text)
+#         prompt = ChatPromptTemplate.from_messages(
+#             [
+#                 (
+#                     "system",
+#                     """
+#                     You are a redaction agent that will identify any personally identifiable information (PII) or comercially sensitive information in the input text and redact it. 
+#                     You should process a input text in reasonable chunks and return the redacted text only, with no additional information or commentary.
+#                     You will return your response in a JSON object that contains the following attributes:
+#                     - 'category': The category that you have assigned to the complaint.
+#                     - 'confidence': A number between 0 and 1 that represents how confident you are in your categorisation.
+#                     - 'response': A string that contains the response that you would like to send to the customer.
 
-                    Only return the JSON object. Do not include any additional information.                
-                    """,
-                ),
-                ("human", "{input}. Respond using only the information in the following complaints procedures: {information}"),
-            ]
-        )
+#                     Only return the JSON object. Do not include any additional information.                
+#                     """,
+#                 ),
+#                 ("human", "{input}. Respond using only the information in the following complaints procedures: {information}"),
+#             ]
+#         )
 
-        chain = prompt | self.llm
-        response = chain.invoke(
-            {
-                "input": input_text,
-                #"information": search_response
-            }
-        )
+#         chain = prompt | self.llm
+#         response = chain.invoke(
+#             {
+#                 "input": input_text,
+#                 "information": search_response
+#             }
+#         )
 
-        return response
+#         return response
 
 class AgentChatHandler:
     def __init__(self) -> None:
-            self.agents_client = project_client.agents
+        self.openai = project_client.get_openai_client()
 
-            self.agent = self.agents_client.get_agent(
-                agent_id=os.environ["AZURE_AI_AGENT_ID"]
-            )
+        self.agent_id = os.environ["AZURE_AI_AGENT_NAME"]
+        self.agent_version = os.environ["AZURE_AI_AGENT_VERSION"]
+        print(f"Using agent ID: {self.agent_id}, version: {self.agent_version}")
 
-            print(f"Fetched agent, ID: {self.agent.id}")
+        # Conversation history persists across turns as a list of messages
+        self.conversation_history: list[dict] = []
     
-    def get_agentic_chat_response(self, input_text):
-        prompt_text = input_text
+    def get_agentic_chat_response(self, input_text: str) -> str:
+        # Append the new user message to history
+        self.conversation_history.append({
+            "role": "user",
+            "content": input_text,
+        })
 
-        run = self.agents_client.create_thread_and_process_run(
-            agent_id = self.agent.id,
-            thread = AgentThreadCreationOptions(
-                messages= [
-                    ThreadMessageOptions(
-                        role="user", content=prompt_text
-                    )
-                ]
-            )
+        response = self.openai.responses.create(
+            extra_body={"agent_reference": {"name": self.agent_id, "version": self.agent_version, "type": "agent_reference"}},
+            input=self.conversation_history,
         )
 
-        if run.status == "failed":
-            print(f"Run failed with error: {run.last_error}")
+        assistant_reply = response.output_text
 
-        messages = self.agents_client.messages.list(thread_id = run.thread_id, order=ListSortOrder.ASCENDING)
-        for msg in messages:
-             if msg.text_messages:
-                  last_text = msg.text_messages[-1]
-                  #print(f"{msg.role}: {last_text.text.value}")
+        # Append assistant reply to history to maintain context
+        self.conversation_history.append({
+            "role": "assistant",
+            "content": assistant_reply,
+        })
 
-        return last_text.text.value
+        return assistant_reply
 
-    def get_agentic_redaction_response(self, file):
-        text = file["text"]
-        prompt_text = f""" 
-        Redact this data: {text}
-        """
-        run = self.agents_client.create_thread_and_process_run(
-            agent_id = self.agent.id,
-            thread = AgentThreadCreationOptions(
-                messages= [
-                    ThreadMessageOptions(
-                        role="user", content=prompt_text
-                    )
-                ]
-            )
-        )
-
-        if run.status == "failed":
-            print(f"Run failed with error: {run.last_error}")
-
-        messages = self.agents_client.messages.list(thread_id = run.thread_id, order=ListSortOrder.ASCENDING)
-        for msg in messages:
-             if msg.text_messages:
-                  last_text = msg.text_messages[-1]
-                  #print(f"{msg.role}: {last_text.text.value}")
-
-        return last_text.text.value
+    def reset_conversation(self) -> None:
+        """Start a fresh conversation."""
+        self.conversation_history = []
+        print("Conversation history cleared.")

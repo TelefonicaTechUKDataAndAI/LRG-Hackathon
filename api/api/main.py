@@ -1,24 +1,32 @@
 import os
+import json
 import tempfile
 import dotenv
 from fastapi import FastAPI, HTTPException, UploadFile
 from pydantic import BaseModel
-from typing import Dict
+from typing import Any
 from fastapi import File, UploadFile
 
-from api.chat.chat_handler import ChatHandler, AgentChatHandler
+from api.chat.chat_handler import AgentChatHandler
 from api.enrich.doc_processor import DocumentProcessor
+from api.search.sql_handler import AzureSQLConnector
 
 dotenv.load_dotenv()
 
 app = FastAPI()
-
-chat_handler = ChatHandler()
 agent_handler = AgentChatHandler()
 doc_processor = DocumentProcessor()
 
 class ProcessRequest(BaseModel):
     body: str
+
+class FetchRecordRequest(BaseModel):
+    personId: int
+
+class LogChatRequest(BaseModel):
+    personId: int
+    messages: list[dict[str, str]] 
+
 class ProcessResponse(BaseModel):
     response: str
 
@@ -54,14 +62,29 @@ async def process_doc_file(files: list[UploadFile] = File(...)) -> ProcessRespon
             if os.path.exists(temp_file.name):
                 os.remove(temp_file.name)
 
-@app.post(path="/api/redact-text")
-async def redact_text() -> ProcessResponse:
-    redacted_texts = []
-    for file in uploaded_files:
+@app.post(path="/api/fetch_record")
+async def fetch_record(request: FetchRecordRequest) -> ProcessResponse:
 
-        # Get the redacted response from the agentic chat handler
-        response_content = agent_handler.get_agentic_redaction_response(file)
-        redacted_texts.append(response_content)
+    try:
+        with AzureSQLConnector() as db:
+            result = db.query_by_id(request.personId)
+            parsed_result = json.loads(result)
+            return ProcessResponse(response=f"✅ Record found: {parsed_result[0].get('name', 'N/A')}")
+    except json.JSONDecodeError as e:
+        raise HTTPException(status_code=500, detail=f"Invalid JSON from database connector: {e}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post(path="/api/log_chat")
+async def log_chat(request: LogChatRequest) -> ProcessResponse:
 
-    output = " ".join(redacted_texts)
-    return ProcessResponse(response=output)
+    try:
+        with AzureSQLConnector() as db:
+            for message in request.messages:
+                db.execute_insert(
+                    "INSERT INTO dbo.Logs (person_id, role, message) VALUES (?, ?, ?)",
+                    (request.personId, message["role"], message["message"])
+                )
+            return ProcessResponse(response="✅ Chat log saved successfully.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

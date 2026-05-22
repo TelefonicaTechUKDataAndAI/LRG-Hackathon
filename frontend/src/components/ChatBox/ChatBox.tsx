@@ -1,27 +1,29 @@
-import { Button, Group, Stack, Textarea, Paper, Text } from '@mantine/core';
+import { Button, Group, Stack, Textarea, Paper, Text, TextInput } from '@mantine/core';
 import {
   IconClearAll,
   IconSend,
-  IconUpload,
-  IconTextScan2
+  IconTextScan2,
+  IconLogs
 } from '@tabler/icons-react';
 import { useRef, useState } from 'react';
-import { useReactMediaRecorder } from 'react-media-recorder-2';
 
 interface ChatBoxProps {
   textMessageCreated: (message: string) => void;
   chatHistoryCleared: () => void;
   selectedFiles: (files: File[] | null) => void;
-  redactText: () => void;
+  fetchPerson: (personId: number) => void;
+  logChat: (personId: number) => void;
 }
 
 export default function ChatBox({
   textMessageCreated,
   chatHistoryCleared,
   selectedFiles,
-  redactText
+  fetchPerson,
+  logChat
 }: ChatBoxProps) {
   const [message, setMessage] = useState<string>('');
+  const [personId, setPersonId] = useState<string>('');
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) {
@@ -36,13 +38,6 @@ export default function ChatBox({
   };
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
-
-  const onFolderSelection = () => {
-    if (hiddenFileInput.current) {
-      hiddenFileInput.current.value = '';
-      hiddenFileInput.current.click();
-    }
-  };
 
   // Handle file/folder selection
   const onFilesSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,21 +63,27 @@ export default function ChatBox({
           onKeyDown={handleKeyDown}
         />
         <Group w="100%">
-          {/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
             <Text size="xs" fw={700} c="gray.7" mb={2}>
               Process
             </Text>
             <Paper withBorder radius="md" p="xs" style={{ borderColor: '#ccc', borderWidth: 1, borderStyle: 'solid', display: 'inline-block', textAlign: 'center' }}>
             <Group>
-              <Button onClick={onFolderSelection} leftSection={<IconUpload />}>
-                Select folder
+              <TextInput
+                placeholder="Person ID"
+                type="number"
+                value={personId}
+                onChange={(e) => setPersonId(e.currentTarget.value)}
+              />
+              <Button onClick={() => fetchPerson(parseInt(personId, 10))} leftSection={<IconTextScan2 />}>
+                Search
               </Button>
-              <Button onClick={redactText} leftSection={<IconTextScan2 />}>
-                Redact Text
+              <Button onClick={() => logChat(parseInt(personId, 10))} leftSection={<IconLogs />}>
+                Log Chat
               </Button>
               </Group>
             </Paper>
-          </div> */}
+          </div>
           <Group ml="auto">
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 90 }}>
             <Text size="xs" fw={700} c="gray.7" mb={2}>
