@@ -1,4 +1,5 @@
 import { Card, Flex } from '@mantine/core';
+import ReactMarkdown from 'react-markdown';
 import ChatMessage from '@/domain/ChatMessage';
 
 interface ChatMessageDisplayProps {
@@ -16,7 +17,7 @@ export default function ChatMessageDisplay({ message }: ChatMessageDisplayProps)
   return (
     <Flex justify={justify}>
       <Card bg={bg} w="55%" shadow="none">
-        {message.message}
+        <ReactMarkdown skipHtml>{message.message}</ReactMarkdown>
       </Card>
     </Flex>
   );
