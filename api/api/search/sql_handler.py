@@ -49,8 +49,8 @@ DB_CONFIG = {
 }
 
 # Table / column to query  ← replace with your actual table and column names
-DEFAULT_TABLE    = "mhtest"
-DEFAULT_ID_FIELD = "id" 
+DEFAULT_TABLE    = "person_details"
+DEFAULT_ID_FIELD = "PERSON_ID_LEGACY" 
 # ===========================================================================
 
 class AzureSQLConnector:

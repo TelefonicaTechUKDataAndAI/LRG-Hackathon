@@ -56,6 +56,8 @@ class AgentChatHandler:
 
         self.agent_id = os.environ["AZURE_AI_AGENT_NAME"]
         self.agent_version = os.environ["AZURE_AI_AGENT_VERSION"]
+        self.kpi_agent_id = os.environ["AZURE_KPI_AGENT_NAME"]
+        self.kpi_agent_version = os.environ["AZURE_KPI_AGENT_VERSION"]
         print(f"Using agent ID: {self.agent_id}, version: {self.agent_version}")
 
         # Conversation history persists across turns as a list of messages
@@ -74,13 +76,24 @@ class AgentChatHandler:
         )
 
         assistant_reply = response.output_text
-
+        
         # Append assistant reply to history to maintain context
         self.conversation_history.append({
             "role": "assistant",
             "content": assistant_reply,
         })
 
+        return assistant_reply
+    
+    def get_agentic_kpi_response(self) -> str:
+        
+        response = self.openai.responses.create(
+            extra_body={"agent_reference": {"name": self.kpi_agent_id, "version": self.kpi_agent_version, "type": "agent_reference"}},
+            input=self.conversation_history,
+        )
+
+        assistant_reply = response.output_text      
+        
         return assistant_reply
 
     def reset_conversation(self) -> None:

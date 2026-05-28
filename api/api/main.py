@@ -2,6 +2,8 @@ import os
 import json
 import tempfile
 import dotenv
+import re
+from datetime import datetime
 from fastapi import FastAPI, HTTPException, UploadFile
 from pydantic import BaseModel
 from typing import Any
@@ -16,6 +18,7 @@ dotenv.load_dotenv()
 app = FastAPI()
 agent_handler = AgentChatHandler()
 doc_processor = DocumentProcessor()
+all_annotations = []
 
 class ProcessRequest(BaseModel):
     body: str
@@ -69,7 +72,7 @@ async def fetch_record(request: FetchRecordRequest) -> ProcessResponse:
         with AzureSQLConnector() as db:
             result = db.query_by_id(request.personId)
             parsed_result = json.loads(result)
-            return ProcessResponse(response=f"✅ Record found: {parsed_result[0].get('name', 'N/A')}")
+            return ProcessResponse(response=f"✅ Record found: {parsed_result[0].get('FULL_NAME', 'N/A')}")
     except json.JSONDecodeError as e:
         raise HTTPException(status_code=500, detail=f"Invalid JSON from database connector: {e}")
     except Exception as e:
@@ -77,14 +80,37 @@ async def fetch_record(request: FetchRecordRequest) -> ProcessResponse:
     
 @app.post(path="/api/log_chat")
 async def log_chat(request: LogChatRequest) -> ProcessResponse:
-
+    ts = datetime.now().timestamp()
     try:
         with AzureSQLConnector() as db:
-            for message in request.messages:
+            for message in request.messages:                
                 db.execute_insert(
-                    "INSERT INTO dbo.Logs (person_id, role, message) VALUES (?, ?, ?)",
-                    (request.personId, message["role"], message["message"])
+                    "INSERT INTO dbo.Logs (person_id, session_id, role, message) VALUES (?, ?, ?, ?)",
+                    (request.personId, ts,  message["role"], message["message"])
                 )
+                if message["role"] == "bot": 
+                    pattern = r":\s*(.+)"
+                    matches = re.findall(pattern, message["message"])
+                    for match in matches: 
+                        db.execute_insert(
+                            "INSERT INTO dbo.service_logs (session_id, url) VALUES (?, ?)",
+                            (ts, match.strip())
+                        )
+            #full_convo = " ".join([m.message for message in request.messages])
+            log_extract = json.loads(agent_handler.get_agentic_kpi_response())
+            db.execute_insert(
+                    "INSERT INTO dbo.Kpi_Logs (session_id, category, service_support_area, nature_of_enquiry, information_or_advice_provided, outcome_or_next_steps, risk_flag, confidence ) VALUES (?, ?, ?, ?,?,?,?,?)",
+                    (ts,  
+                     log_extract["category"], 
+                     log_extract["service_support_area"],
+                     log_extract["nature_of_enquiry"],
+                     log_extract["information_or_advice_provided"],
+                     log_extract["outcome_or_next_steps"],
+                     log_extract["risk_flag"],
+                     log_extract["confidence"]
+                     )
+                )                       
+
             return ProcessResponse(response="✅ Chat log saved successfully.")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

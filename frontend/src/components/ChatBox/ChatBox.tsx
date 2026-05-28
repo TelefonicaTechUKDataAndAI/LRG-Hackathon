@@ -57,7 +57,7 @@ export default function ChatBox({
         <Textarea
           placeholder="Type your message here"
           autosize
-          minRows={7}
+          minRows={1}
           value={message}
           onChange={(e) => setMessage(e.currentTarget.value)}
           onKeyDown={handleKeyDown}
